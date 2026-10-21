@@ -1,0 +1,109 @@
+# ---- Build output directories ----------------------------------------------
+build/
+out/
+bin/
+obj/
+Debug/
+Release/
+
+# ---- Object files & compiler intermediates ---------------------------------
+*.o
+*.obj
+*.d
+*.i
+*.ii
+*.su
+*.cyclo
+*.gch
+*.pch
+
+# ---- Static libraries ------------------------------------------------------
+# If you vendor a precompiled library (e.g. a closed-source BLE stack),
+# negate it explicitly, e.g.:  !third_party/vendor/lib/*.a
+*.a
+*.lib
+
+# ---- Firmware images & linker outputs --------------------------------------
+*.elf
+*.axf
+*.out
+*.hex
+*.bin
+*.srec
+*.s19
+*.mot
+*.uf2
+*.dfu
+*.map
+*.lst
+*.lss
+*.sym
+
+# ---- CMake / Make / Ninja --------------------------------------------------
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+CTestTestfile.cmake
+CMakeUserPresets.json
+Testing/
+_deps/
+compile_commands.json
+.ninja_deps
+.ninja_log
+
+# ---- Unit tests & coverage (Unity / Ceedling / CppUTest / GoogleTest) ------
+*.gcno
+*.gcda
+*.gcov
+coverage/
+
+# ---- Language servers & static analysis caches -----------------------------
+.cache/
+.clangd/
+.ccls-cache/
+
+# ---- Python tooling (scripts, code generators, HIL test runners) -----------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# ---- Generated documentation (Doxygen) -------------------------------------
+docs/html/
+docs/latex/
+
+# ---- Logs ------------------------------------------------------------------
+*.log
+
+# ---- Secrets & signing keys (NEVER commit) ---------------------------------
+# Public CA certificates embedded in firmware are fine to commit; negate them:
+#   !certs/ca_root.pem
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.h
+*_secrets.h
+
+# ---- Editors & IDEs --------------------------------------------------------
+# Share team-wide VS Code config, ignore everything else in .vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+*.bak
+*.orig
+
+# ---- OS clutter ------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
