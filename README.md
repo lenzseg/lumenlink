@@ -9,6 +9,7 @@
 | Tool | Version | Host |
 |---|---|---|
 | Arm GNU Toolchain (`arm-none-eabi`) | 15.3.rel2 | Linux x86_64 |
+| ESP-IDF (installed with EIM) | v6.1 | Linux x86_64 |
 
 ### Install the Arm GNU Toolchain
 
@@ -37,3 +38,50 @@
    export PATH="/opt/arm-gnu-toolchain/arm-none-eabi/bin:$PATH"
    arm-none-eabi-gcc --version
    ```
+
+### Install ESP-IDF
+
+ESP-IDF and its tools (RISC-V compiler, CMake, Ninja, Python environment) are installed with
+**EIM**, the ESP-IDF Installation Manager. On Linux, install the EIM CLI through `apt`.
+
+1. Install the prerequisites (build tools, USB access, and the libraries used by the optional QEMU emulator):
+
+   ```bash
+   sudo apt update
+   sudo apt install -y \
+     git wget flex bison gperf ccache dfu-util \
+     libffi-dev libssl-dev libusb-1.0-0 \
+     python3 python3-pip python3-venv \
+     libgcrypt20 libglib2.0-0 libpixman-1-0 libsdl2-2.0-0 libslirp0
+   ```
+
+2. Add the Espressif APT repository and install the EIM CLI:
+
+   ```bash
+   echo "deb [trusted=yes] https://dl.espressif.com/dl/eim/apt/ stable main" | sudo tee /etc/apt/sources.list.d/espressif.list
+   sudo apt update
+   sudo apt install -y eim-cli
+   ```
+
+   > `[trusted=yes]` skips APT signature checks for this repository. Only use it with the official Espressif URL.
+
+3. Install the pinned ESP-IDF version for the ESP32-C6 (files go to `~/.espressif/`):
+
+   ```bash
+   eim install -t esp32c6 -i v6.1
+   ```
+
+4. Allow your user to access the board's serial port, then log out and back in:
+
+   ```bash
+   sudo usermod -aG dialout $USER
+   ```
+
+5. Activate ESP-IDF in each new terminal and verify:
+
+   ```bash
+   source ~/.espressif/tools/activate_idf_v6.1.sh
+   idf.py --version
+   ```
+
+   > Activate it per terminal instead of adding it to `~/.bashrc`; it loads its own Python environment and tool paths.
